@@ -23,3 +23,27 @@
             return res;
         }
     };
+	
+### approach#2 (One-pass Hash Table)
+	class Solution {
+	public:
+    	vector<int> twoSum(vector<int>& nums, int target) {    #check if the element's complement exists while iterating
+        	vector<int> res;
+        	int size = nums.size();
+        	if ( size>= 2) {
+            	map<int, int> hmap;
+            	int x, j;
+            	for (unsigned int i=0; i< size; i++) {
+                	x = target - nums[i];
+                	if (hmap.count(x)) {
+                    	j = hmap[x];
+                    	res.push_back(j);
+                    	res.push_back(i);
+                    	return res;
+                	}
+                	hmap.insert(pair<int, int>(nums[i], i));
+            	}
+        	}
+        	return res;
+    	}
+	};
